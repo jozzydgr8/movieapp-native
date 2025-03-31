@@ -1,0 +1,70 @@
+# 🎬 Movie Explorer App
+
+Moviebox-native app is a mobile app that allows users to **search for any movie** and **explore an endless list of popular movies**. The app fetches data from **The Movie Database (TMDB) API** to provide up-to-date information on movies, including posters, titles, and descriptions.
+
+## ✨ Features
+- 🔍 **Search Movies:** Instantly find movies by title.
+- 📜 **Endless Scrolling Explore:** Browse an infinite list of trending movies.
+- 🖼️ **Movie Posters & Details:** View high-quality movie posters and information.
+- ⚡ **Optimized Performance:** Uses pagination and caching for smooth browsing.
+
+## 🚀 Getting Started
+### 1️⃣ Prerequisites
+Make sure you have the following installed:
+- **Node.js** & **npm**
+- **Expo CLI** (for running the app on a device or emulator)
+- **Android Studio** (optional, for testing on an Android emulator)
+
+### 2️⃣ Clone the Repository
+```sh
+git clone  https://github.com/jozzydgr8/movieapp-native.git
+cd movieapp-native
+```
+
+### 3️⃣ Install Dependencies
+```sh
+npm install
+```
+
+### 4️⃣ Set Up Environment Variables
+Create a `.env` file in the root directory and add your **TMDB API Key**:
+```env
+TMDB_API_KEY=your_api_key_here
+```
+
+Make sure `.env` is added to `.gitignore` to keep your API key private.
+
+### 5️⃣ Run the App
+Start the app with Expo:
+```sh
+npx expo start
+```
+
+To run on an Android Emulator (optional):
+```sh
+npx expo run:android
+```
+
+To run on an iOS Simulator:
+```sh
+npx expo run:ios
+```
+
+## 🔧 Technologies Used
+- **Expo (React Native framework)** (for easy development and testing)
+- **Axios** (for API requests)
+- **TMDB API** (for movie data)
+- **React Navigation** (for smooth navigation)
+
+## 📸 Screenshots
+
+
+## 📜 License
+This project is open-source and available under the **MIT License**.
+
+---
+
+💡 **Contributions & Feedback** are welcome! Feel free to fork the repo and submit pull requests.
+
+🚀 Happy coding!
+
