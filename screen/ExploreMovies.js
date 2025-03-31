@@ -3,27 +3,35 @@ import { globalStyles } from "../global/global";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../shared/Header";
+import { TMDB_API_KEY } from "@env";
+
+// Function to shuffle an array
+const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+};
 
 export default function ExploreMovies({ navigation }) {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const fetchMovies = async (pageNumber) => {
-        if (loading) return; // Prevent multiple API calls at once
+    const fetchMovies = async () => {
+        if (loading) return;
 
         setLoading(true);
         try {
+            const randomPage = Math.floor(Math.random() * 500) + 1; // Random page from 1 to 500
             const response = await axios.get("https://api.themoviedb.org/3/discover/movie", {
                 params: {
-                    api_key: "89707361b16946b90801886bc1f0622c",
+                    api_key: TMDB_API_KEY,
                     sort_by: "popularity.desc",
-                    page: pageNumber,
+                    page: randomPage,
                 },
             });
 
-            setData((prevData) => [...prevData, ...response.data.results]); // Append new data
-            setPage(pageNumber); // Update page number
+            const shuffledData = shuffleArray(response.data.results); // Shuffle results
+            setData((prevData) => [...prevData, ...shuffledData]); // Append shuffled data
+            setPage(randomPage); // Store the last fetched page
         } catch (error) {
             console.error("Error fetching movies:", error);
         } finally {
@@ -32,19 +40,19 @@ export default function ExploreMovies({ navigation }) {
     };
 
     useEffect(() => {
-        fetchMovies(1); // Load the first page initially
+        fetchMovies(); // Fetch randomized movies on first load
     }, []);
 
-    // Function to load more data when reaching the end
+    // Load more when user reaches the end
     const loadMore = () => {
         if (!loading) {
-            fetchMovies(page + 1); // Load next page
+            fetchMovies(); // Fetch a new random page
         }
     };
 
     return (
         <View style={globalStyles.container}>
-            <Header title={"Explore Movies"} />
+            <Header title={"Explore Movies"} navigation={navigation} />
             <FlatList
                 numColumns={2}
                 keyExtractor={(item) => item.id.toString()}
@@ -62,8 +70,8 @@ export default function ExploreMovies({ navigation }) {
                     </TouchableOpacity>
                 )}
                 onEndReached={loadMore} // Triggers when near the end
-                onEndReachedThreshold={0.5} // Adjusts sensitivity of onEndReached
-                ListFooterComponent={loading ? <ActivityIndicator size="large" color="#0000ff" /> : null} // Loading indicator at bottom
+                onEndReachedThreshold={0.5} // Adjust sensitivity
+                ListFooterComponent={loading ? <ActivityIndicator size="large" color="#0000ff" /> : null} // Loading indicator
             />
         </View>
     );

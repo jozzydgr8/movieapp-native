@@ -1,6 +1,8 @@
 import { ImageBackground, View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { TMDB_API_KEY } from '@env';
+
 
 export function HeaderPoster({ identifier }) {
     const [data, setData] = useState(null);
@@ -13,7 +15,7 @@ export function HeaderPoster({ identifier }) {
         const fetchMovie = async () => {
             try {
                 const response = await axios.get(`https://api.themoviedb.org/3/movie/${identifier}`, {
-                    params: { api_key: '89707361b16946b90801886bc1f0622c' },
+                    params: { api_key: TMDB_API_KEY},
                 });
                 if (isMounted) {
                     setData(response.data);

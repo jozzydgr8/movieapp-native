@@ -1,4 +1,4 @@
-import { StyleSheet, View,Text, Touchable, TouchableWithoutFeedback } from "react-native"
+import { StyleSheet, View,Text,  TouchableWithoutFeedback } from "react-native"
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Header({navigation, title}){

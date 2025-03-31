@@ -8,7 +8,9 @@ import { Home } from './screen/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { TMDB_API_KEY } from '@env';
+
 
 import Review from './screen/Review';
 import FindMovies from './screen/FindMovies';
@@ -22,7 +24,7 @@ export default function App() {
 
     axios.get('https://api.themoviedb.org/3/movie/top_rated',{
       params: {
-          api_key: '89707361b16946b90801886bc1f0622c'  
+          api_key: TMDB_API_KEY  
       }
   }).then(response => {
 
@@ -53,7 +55,7 @@ export default function App() {
   }}
 >
   <Stack.Screen 
-    name="Home" 
+    name="movie" 
     component={Home} 
     options={{ headerShown: false }} 
   />
@@ -85,7 +87,7 @@ export default function App() {
         }}
       >
         <Stack.Screen 
-          name="explore" 
+          name="explorestack " 
           component={ExploreMovies} 
           options={{ headerShown: false }} 
         />

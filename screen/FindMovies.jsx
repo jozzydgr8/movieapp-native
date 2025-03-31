@@ -4,8 +4,7 @@ import { globalStyles } from "../global/global";
 import { useState } from "react";
 import axios from "axios";
 import Ionicons from '@expo/vector-icons/Ionicons';
-
-
+import {TMDB_API_KEY} from '@env'
 export default function FindMovies({navigation}){
 
     const [movies, setMovies] = useState([]);
@@ -13,7 +12,7 @@ export default function FindMovies({navigation}){
         try {
           const response = await axios.get("https://api.themoviedb.org/3/search/movie", {
             params: {
-              api_key: '89707361b16946b90801886bc1f0622c',
+              api_key: TMDB_API_KEY,
               query: query,
             },
           });
